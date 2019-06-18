@@ -10,9 +10,6 @@ private:
     SortBehavior * m_sort; // Composition
 
 public:
-    Container() {}
-    ~Container() {}
-
     void Sort() {
         m_sort->sort();
     }

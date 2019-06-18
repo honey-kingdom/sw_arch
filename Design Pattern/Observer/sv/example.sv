@@ -62,3 +62,14 @@ class sub #(type T = simple_packet) extends uvm_subscriber #(T);
       `uvm_info (get_full_name(), "Sub got transaction", UVM_MEDIUM)
    endfunction
 endclass
+
+
+
+
+class my_env extends uvm_env;
+  ...
+  virtual function void connect_phase (uvm_phase phase);
+    super.connect_phase (phase);
+    compB.ap.connect (sub1.analysis_export);
+  endfunction
+endclass

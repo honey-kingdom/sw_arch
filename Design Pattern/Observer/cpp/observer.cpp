@@ -6,23 +6,17 @@ public:
     virtual void update() = 0;
 };
 
-class Publisher {
-public:
-    virtual void add(Subscriber * s) = 0;
-    virtual void notify() = 0;
-};
-
-class ChattingRoom: public Publisher {
+class ChattingRoom {
 private:
     std::list<Subscriber *> subscribers;
     std::string message;
 
 public:
-    void add(Subscriber * s) override {
+    void add(Subscriber * s) {
         subscribers.push_back(s);
     }
 
-    void notify() override {
+    void notify() {
         for (auto & i : subscribers)
             i->update();
     }
@@ -51,8 +45,7 @@ public:
     }
 };
 
-int main(void)
-{
+int main(void) {
     ChattingRoom aa;
 
     ChatMember x(aa);
