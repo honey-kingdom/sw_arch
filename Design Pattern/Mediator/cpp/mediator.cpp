@@ -2,58 +2,53 @@
 #include <string>
 #include <list>
 
-class Mediator;
+class Component;
+
+class IMediator {
+public: // Delegated functions
+    virtual void add(Component * c) = 0;
+    virtual void sendMessage(std::string s, Component * c) = 0;
+};
+
+
 
 class Component {
 private:
     std::string name;
-    Mediator & mediator;
+    IMediator & mediator;
 
 public:
-    Component(std::string name, Mediator & mediator);
+    Component(std::string name, IMediator & mediator): name(name), mediator(mediator) {
+        mediator.add(this);
+    }
 
-    void receiveMessage(std::string s);
-    void sendMessage(std::string s);
+    void receiveMessage(std::string s) {
+        std::cout << "[" + name + "] " + s << std::endl;
+    }
+
+    void sendMessage(std::string s) {
+        mediator.sendMessage(name + ": " + s, this);
+    }
 };
 
 
 
-class Mediator {
+class Mediator: public IMediator {
 private:
     std::list<Component *> colleagues;
 
 public:
-    void add(Component * c);
-    void sendMessage(std::string s, Component * c);
-};
-
-
-
-Component::Component(std::string name, Mediator & mediator)
-    : name(name), mediator(mediator) {
-    mediator.add(this);
-}
-
-void Component::receiveMessage(std::string s) {
-    std::cout << "[" + name + "] " + s << std::endl;
-};
-
-void Component::sendMessage(std::string s) {
-    mediator.sendMessage(name + ": " + s, this);
-}
-
-
-
-void Mediator::add(Component * c) {
-    colleagues.push_back(c);
-}
-
-void Mediator::sendMessage(std::string s, Component * c) {
-    for (auto & i : colleagues) {
-        if (i != c)
-            i->receiveMessage(s);
+    void add(Component * c) override {
+        colleagues.push_back(c);
     }
-}
+
+    void sendMessage(std::string s, Component * c) override {
+        for (auto & i : colleagues) {
+            if (i != c)
+                i->receiveMessage(s);
+        }
+    }
+};
 
 
 
