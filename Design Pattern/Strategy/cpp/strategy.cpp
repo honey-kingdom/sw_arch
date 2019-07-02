@@ -3,6 +3,8 @@
 class SortBehavior { // Interface
 public:
     virtual void sort() = 0;
+
+    virtual ~SortBehavior() {}
 };
 
 class Container {
@@ -42,5 +44,6 @@ int main(void) {
     aa.SetBehavior(y);
     aa.Sort();
 
-    delete x, y;
+    delete x;
+    delete y;
 }

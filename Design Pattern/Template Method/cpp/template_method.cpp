@@ -12,6 +12,8 @@ public:
     void Execute() {
         a(); ph1(); c(); ph2(); e();
     }
+
+    virtual ~Base() {}
 };
 
 
@@ -45,5 +47,6 @@ int main() {
         std::cout << std::endl;
     }
 
-    delete x, y;
+    delete x;
+    delete y;
 }

@@ -8,6 +8,8 @@ public:
     virtual void selectItem(VendingMachine * context)   { std::cerr << "Unexpected Behavior!" << std::endl; }
     virtual void dispenseItem(VendingMachine * context) { std::cerr << "Unexpected Behavior!" << std::endl; }
     virtual void returnChange(VendingMachine * context) { std::cerr << "Unexpected Behavior!" << std::endl; }
+
+    virtual ~State() {}
 };
 
 

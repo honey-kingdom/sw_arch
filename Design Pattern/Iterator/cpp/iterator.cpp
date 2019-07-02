@@ -7,6 +7,8 @@ class BaseIterator {
 public:
     virtual Item next() = 0;
     virtual bool hasNext() = 0;
+
+    virtual ~BaseIterator() {}
 };
 
 
