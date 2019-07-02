@@ -61,8 +61,6 @@ int main() {
 
     auto iterator = my_sentence.createIterator();
 
-    std::string word;
-
     while(iterator->hasNext()) {
         std::cout << iterator->next() << std::endl;
     }
