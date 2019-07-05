@@ -91,7 +91,7 @@ void GstatePacket::DoPrint() {
 
 int main(void)
 {
-    SequenceItem::FactoryOverride(new CstatePacketFactory());
+    SequenceItem::FactoryOverride(new CstatePacketFactory()); // Analogy : Super Mario Maker's Theme
     SequenceItem * cstate = SequenceItem::Create();
 
     SequenceItem::DeleteFactory();
