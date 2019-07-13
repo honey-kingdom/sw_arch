@@ -54,7 +54,7 @@ public:
 
 
 int main(void) {
-    auto aa = new Logger(new Timer(new HelloWorld));
+    auto aa = new Logger(new Timer(new HelloWorld()));
 
     aa->doIt();
 }
